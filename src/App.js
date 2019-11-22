@@ -1,21 +1,15 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-
-const Dashboard = () => (
-  <div>
-    <h3>Dashboard</h3>
-    <p>This is separate route.</p>
-  </div>
-)
+import { Route } from 'react-router-dom'
+import BeersView from './beer/BeersView'
+import Header from './shared/Header'
+import SingleBeerView from './beer/SingleBeerView'
 
 const App = () => (
   <div>
-    <nav>
-      <Link to="/dashboard">Dashboard</Link>
-    </nav>
-    <h1>Welcome to React!</h1>
     <div>
-      <Route path="/dashboard" component={Dashboard}/>
+      <Route path='/' component={Header}/>
+      <Route exact path="/" component={BeersView}/>
+      <Route path='/:id' component={SingleBeerView}/>
     </div>
   </div>
 )

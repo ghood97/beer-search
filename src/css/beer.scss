@@ -1,0 +1,17 @@
+
+.beerDiv {
+  border: 2px solid black;
+  border-radius: 20px;
+  display: flex;
+  height: 500px;
+  width: 30%;
+  min-width: 350px;
+  margin: 9px;
+  &:hover {
+    box-shadow: 5px 10px grey;
+  }
+}
+
+ .beerImg {
+   height: 400px
+ }
