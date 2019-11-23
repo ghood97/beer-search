@@ -2,6 +2,19 @@ import React, { Component, Fragment } from 'react'
 import Axios from 'axios'
 import apiUrl from '../apiConfig'
 
+const imgStyle = {
+  height: '300px'
+}
+
+const divStyle = {
+  textAlign: 'center'
+}
+
+const pStyle = {
+  marginLeft: '10px',
+  marginRight: '10px'
+}
+
 class SingleBeerView extends Component {
   constructor () {
     super()
@@ -28,13 +41,12 @@ class SingleBeerView extends Component {
       <Fragment>
         <h1>{this.state.beer.name}</h1>
         <h3>{this.state.beer.tagline}</h3>
-        <ul>
-          <li>{this.state.beer.description}</li>
-        </ul>
+        <p style={pStyle}>{this.state.beer.description}</p>
+        <img style={imgStyle} src={this.state.beer.image_url} />
       </Fragment>
     }
     return (
-      <div>
+      <div style={divStyle}>
         {beerJsx}
       </div>
     )
