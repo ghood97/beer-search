@@ -3,15 +3,7 @@ import Beer from './Beer'
 import SearchBar from '../shared/SearchBar'
 import Axios from 'axios'
 import apiUrl from '../apiConfig'
-
-const displayContainer = {
-  display: 'flex',
-  flexDirecton: 'row',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  alignItems: 'start',
-  margin: '5px'
-}
+import { Container, Col, Row } from 'react-bootstrap'
 
 class BeerDisplay extends Component {
   constructor () {
@@ -49,14 +41,15 @@ class BeerDisplay extends Component {
     let beerJsx = ''
     if (this.state.beers.length > 0) {
       beerJsx = this.state.beers.map(x => (
-        <Beer
-          onClick={this.handleClick}
-          key={x.id}
-          id={x.id}
-          name={x.name}
-          description={x.description}
-          imageUrl={x.image_url}
-        />
+        <Col key={x.id} sm={12} lg={4}>
+          <Beer
+            onClick={this.handleClick}
+            id={x.id}
+            name={x.name}
+            description={x.description}
+            imageUrl={x.image_url}
+          />
+        </Col>
       ))
     } else if (this.state.beers[0] === 1) {
       beerJsx = <h2>Loading...</h2>
@@ -69,9 +62,11 @@ class BeerDisplay extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-        <div style={displayContainer}>
-          {beerJsx}
-        </div>
+        <Container>
+          <Row>
+            {beerJsx}
+          </Row>
+        </Container>
       </div>
     )
   }
