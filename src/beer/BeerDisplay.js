@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Beer from './Beer'
-import SearchBar from '../shared/SearchBar'
 import Axios from 'axios'
 import apiUrl from '../apiConfig'
+import SearchBar from '../shared/SearchBar'
 import { Container, Col, Row } from 'react-bootstrap'
 
 class BeerDisplay extends Component {
@@ -35,6 +35,7 @@ class BeerDisplay extends Component {
         })
         .catch(console.error)
     }
+    document.getElementById('searchForm').reset()
   }
 
   render () {
@@ -57,17 +58,19 @@ class BeerDisplay extends Component {
       beerJsx = <h2>No Beers Found</h2>
     }
     return (
-      <div>
-        <SearchBar
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
-        <Container>
+      <Fragment>
+        <Container fluid className='d-flex flex-row justify-content-end'>
+          <SearchBar
+            handleChange={this.handleChange}
+            handleSubmit={this.handleSubmit}
+          />
+        </Container>
+        <Container className='mt-5'>
           <Row>
             {beerJsx}
           </Row>
         </Container>
-      </div>
+      </Fragment>
     )
   }
 }

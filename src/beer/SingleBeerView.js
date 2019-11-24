@@ -27,6 +27,7 @@ class SingleBeerView extends Component {
   componentDidMount () {
     Axios(`${apiUrl}/${this.props.match.params.id}`)
       .then(res => {
+        console.log(this.props.match.url)
         this.setState({ beer: res.data[0] })
       })
       .catch(console.error)

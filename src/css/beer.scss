@@ -6,6 +6,10 @@
   overflow-y: scroll;
 }
 
+.card {
+  height: 650px;
+}
+
 .cardText::-webkit-scrollbar {
   display: none;
 }
