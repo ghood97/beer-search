@@ -1,24 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import BeerDisplay from './BeerDisplay'
 
-class BeersView extends Component {
-  constructor () {
-    super()
-
-    this.state = {}
-  }
-
-  handleChange (event) {
-    this.setState({ search: event.target.value })
-  }
-
-  render () {
-    return (
-      <div>
-        <BeerDisplay />
-      </div>
-    )
-  }
-}
+const BeersView = () => (
+  <div>
+    <BeerDisplay />
+  </div>
+)
 
 export default BeersView

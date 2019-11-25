@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import Axios from 'axios'
 import apiUrl from '../apiConfig'
 
@@ -15,43 +15,35 @@ const pStyle = {
   marginRight: '10px'
 }
 
-class SingleBeerView extends Component {
-  constructor () {
-    super()
+const SingleBeerView = (props) => {
+  const [beer, setBeer] = useState({})
 
-    this.state = {
-      beer: ''
-    }
-  }
-
-  componentDidMount () {
-    Axios(`${apiUrl}/${this.props.match.params.id}`)
+  useEffect(() => {
+    Axios(`${apiUrl}/${props.match.params.id}`)
       .then(res => {
-        console.log(this.props.match.url)
-        this.setState({ beer: res.data[0] })
+        console.log(props.match.url)
+        setBeer(res.data[0])
       })
       .catch(console.error)
-  }
+  })
 
-  render () {
-    let beerJsx = ''
-    if (this.state.beer === '') {
-      beerJsx = 'Loading...'
-    } else {
-      beerJsx =
-      <Fragment>
-        <h1>{this.state.beer.name}</h1>
-        <h3>{this.state.beer.tagline}</h3>
-        <p style={pStyle}>{this.state.beer.description}</p>
-        <img style={imgStyle} src={this.state.beer.image_url} />
-      </Fragment>
-    }
-    return (
-      <div style={divStyle}>
-        {beerJsx}
-      </div>
-    )
+  let beerJsx = ''
+  if (beer === '') {
+    beerJsx = 'Loading...'
+  } else {
+    beerJsx =
+    <Fragment>
+      <h1>{beer.name}</h1>
+      <h3>{beer.tagline}</h3>
+      <p style={pStyle}>{beer.description}</p>
+      <img style={imgStyle} src={beer.image_url} />
+    </Fragment>
   }
+  return (
+    <div style={divStyle}>
+      {beerJsx}
+    </div>
+  )
 }
 
 export default SingleBeerView
